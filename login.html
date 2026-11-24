@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Login | HydroTrack Municipal Water Authority</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              900: '#0c4a6e'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background-color: #0b1120;
+      color: #f1f5f9;
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white">
+
+  <!-- Toast Notification Stack -->
+  <div id="toastContainer" class="fixed top-6 right-6 z-50 flex flex-col gap-2 max-w-sm pointer-events-none"></div>
+
+  <!-- Top Nav Link back to Citizen Portal -->
+  <header class="p-4 sm:p-6 max-w-7xl w-full mx-auto flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3 group">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center shadow-lg shadow-sky-500/30 group-hover:scale-105 transition-transform">
+        <i data-lucide="droplet" class="w-6 h-6 text-white"></i>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="font-black text-xl tracking-tight text-white">Hydro<span class="text-sky-400">Track</span></span>
+          <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-sky-950 text-sky-300 border border-sky-800 font-bold">GovTech Gateway</span>
+        </div>
+        <p class="text-[11px] text-slate-400">Municipal Water Authority Secure Access</p>
+      </div>
+    </a>
+
+    <a href="index.html" class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold border border-slate-700 transition-all">
+      <i data-lucide="arrow-left" class="w-4 h-4"></i>
+      <span>Back to Public Citizen Portal</span>
+    </a>
+  </header>
+
+  <!-- Main Login Card Container -->
+  <main class="flex-1 flex items-center justify-center px-4 py-8">
+    <div class="max-w-xl w-full bg-slate-900/90 rounded-3xl border border-slate-800 shadow-2xl overflow-hidden backdrop-blur-xl">
+      
+      <!-- Header Banner -->
+      <div class="p-6 md:p-8 bg-gradient-to-r from-slate-900 via-sky-950/60 to-slate-900 border-b border-slate-800 text-center space-y-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/15 border border-sky-400/30 text-sky-300 text-xs font-semibold">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Role-Based Access Control (RBAC)
+        </div>
+        <h2 class="text-2xl font-black text-white tracking-tight">Staff Authentication Gateway</h2>
+        <p class="text-xs text-slate-400 max-w-sm mx-auto">
+          Please select your municipal department to authenticate and access your workstation.
+        </p>
+      </div>
+
+      <!-- Demo Credentials Highlight Box (ALWAYS VISIBLE) -->
+      <div class="m-6 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 space-y-2">
+        <div class="flex items-center justify-between text-xs font-bold text-amber-300">
+          <span class="flex items-center gap-1.5">
+            <i data-lucide="key" class="w-4 h-4 text-amber-400"></i>
+            Project Demo Login Credentials:
+          </span>
+          <span class="text-[10px] uppercase tracking-wider text-amber-400/80">Evaluator Reference</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+          <!-- Crew Creds -->
+          <div class="p-2.5 rounded-xl bg-slate-900/90 border border-amber-500/20 space-y-1">
+            <div class="text-[11px] font-bold text-sky-400 flex items-center gap-1">
+              <i data-lucide="wrench" class="w-3 h-3"></i> 1. Field Crew / Technician
+            </div>
+            <div class="text-slate-300 font-mono text-[11px]">Badge: <b class="text-white">TECH-04</b></div>
+            <div class="text-slate-300 font-mono text-[11px]">Password: <b class="text-white">crew123</b></div>
+          </div>
+
+          <!-- Admin Creds -->
+          <div class="p-2.5 rounded-xl bg-slate-900/90 border border-amber-500/20 space-y-1">
+            <div class="text-[11px] font-bold text-emerald-400 flex items-center gap-1">
+              <i data-lucide="shield" class="w-3 h-3"></i> 2. Municipal Admin
+            </div>
+            <div class="text-slate-300 font-mono text-[11px]">Username: <b class="text-white">admin</b></div>
+            <div class="text-slate-300 font-mono text-[11px]">Password: <b class="text-white">admin123</b></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Switchers: Crew vs Admin -->
+      <div class="px-6 flex gap-2">
+        <button id="tabCrewBtn" class="flex-1 py-3 rounded-2xl text-xs font-bold transition-all flex items-center justify-center gap-2 bg-sky-600 text-white shadow-lg shadow-sky-600/30 border border-sky-400/30">
+          <i data-lucide="wrench" class="w-4 h-4"></i> Field Crew Login
+        </button>
+        <button id="tabAdminBtn" class="flex-1 py-3 rounded-2xl text-xs font-bold transition-all flex items-center justify-center gap-2 bg-slate-800 text-slate-400 hover:text-white border border-slate-700">
+          <i data-lucide="shield" class="w-4 h-4"></i> Municipal Admin Login
+        </button>
+      </div>
+
+      <!-- Tab Forms Container -->
+      <div class="p-6">
+        
+        <!-- ============================================== -->
+        <!-- 1. FIELD CREW LOGIN FORM                      -->
+        <!-- ============================================== -->
+        <form id="fieldCrewForm" class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Technician Badge ID or Email</label>
+            <div class="relative">
+              <i data-lucide="badge-check" class="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+              <input type="text" id="crewBadgeInput" required value="TECH-04" placeholder="e.g. TECH-04 or crew@hydrotrack.gov" class="w-full bg-slate-800 border border-slate-700 rounded-xl pl-10 pr-4 py-3 text-sm text-white font-mono focus:outline-none focus:border-sky-500 transition-all">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Access PIN / Password</label>
+            <div class="relative">
+              <i data-lucide="lock" class="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+              <input type="password" id="crewPasswordInput" required value="crew123" placeholder="••••••••" class="w-full bg-slate-800 border border-slate-700 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:border-sky-500 transition-all">
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between text-xs text-slate-400 pt-1">
+            <button type="button" id="fillCrewDemoBtn" class="text-sky-400 hover:text-sky-300 font-bold underline flex items-center gap-1">
+              <i data-lucide="zap" class="w-3.5 h-3.5"></i> 1-Click Auto-Fill Crew Details
+            </button>
+            <span class="text-[11px] text-slate-500">Crew #04 - Vikas Kumar</span>
+          </div>
+
+          <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold text-sm shadow-xl shadow-sky-600/30 transition-all flex items-center justify-center gap-2 group">
+            <i data-lucide="log-in" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            Unlock Field Crew Workstation
+          </button>
+        </form>
+
+        <!-- ============================================== -->
+        <!-- 2. MUNICIPAL ADMIN LOGIN FORM                 -->
+        <!-- ============================================== -->
+        <form id="adminForm" class="space-y-4 hidden">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Municipal Administrator Username</label>
+            <div class="relative">
+              <i data-lucide="user-check" class="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+              <input type="text" id="adminUserInput" required value="admin" placeholder="e.g. admin or admin@hydrotrack.gov" class="w-full bg-slate-800 border border-slate-700 rounded-xl pl-10 pr-4 py-3 text-sm text-white font-mono focus:outline-none focus:border-emerald-500 transition-all">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Administrative Master Password</label>
+            <div class="relative">
+              <i data-lucide="shield-alert" class="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+              <input type="password" id="adminPasswordInput" required value="admin123" placeholder="••••••••" class="w-full bg-slate-800 border border-slate-700 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500 transition-all">
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between text-xs text-slate-400 pt-1">
+            <button type="button" id="fillAdminDemoBtn" class="text-emerald-400 hover:text-emerald-300 font-bold underline flex items-center gap-1">
+              <i data-lucide="zap" class="w-3.5 h-3.5"></i> 1-Click Auto-Fill Admin Details
+            </button>
+            <span class="text-[11px] text-slate-500">Chief Engineer - Er. Natarajan</span>
+          </div>
+
+          <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-bold text-sm shadow-xl shadow-emerald-600/30 transition-all flex items-center justify-center gap-2 group">
+            <i data-lucide="shield-check" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+            Authenticate Command Center
+          </button>
+        </form>
+
+      </div>
+
+      <!-- Card Footer -->
+      <div class="p-4 bg-slate-950/80 border-t border-slate-800 text-center text-xs text-slate-500 flex items-center justify-center gap-3">
+        <span>HydroTrack Security Layer</span>
+        <span>•</span>
+        <a href="index.html" class="text-sky-400 hover:underline">Return to Citizen Portal</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="p-4 text-center text-xs text-slate-500">
+    HydroTrack Municipal Project • Java Mini-Project & Web Portal Integration
+  </footer>
+
+  <script>
+    // Tab Switching Logic
+    const tabCrewBtn = document.getElementById('tabCrewBtn');
+    const tabAdminBtn = document.getElementById('tabAdminBtn');
+    const fieldCrewForm = document.getElementById('fieldCrewForm');
+    const adminForm = document.getElementById('adminForm');
+
+    function selectTab(role) {
+      if (role === 'crew') {
+        tabCrewBtn.className = "flex-1 py-3 rounded-2xl text-xs font-bold transition-all flex items-center justify-center gap-2 bg-sky-600 text-white shadow-lg shadow-sky-600/30 border border-sky-400/30";
+        tabAdminBtn.className = "flex-1 py-3 rounded-2xl text-xs font-bold transition-all flex items-center justify-center gap-2 bg-slate-800 text-slate-400 hover:text-white border border-slate-700";
+        fieldCrewForm.classList.remove('hidden');
+        adminForm.classList.add('hidden');
+      } else {
+        tabAdminBtn.className = "flex-1 py-3 rounded-2xl text-xs font-bold transition-all flex items-center justify-center gap-2 bg-emerald-600 text-white shadow-lg shadow-emerald-600/30 border border-emerald-400/30";
+        tabCrewBtn.className = "flex-1 py-3 rounded-2xl text-xs font-bold transition-all flex items-center justify-center gap-2 bg-slate-800 text-slate-400 hover:text-white border border-slate-700";
+        adminForm.classList.remove('hidden');
+        fieldCrewForm.classList.add('hidden');
+      }
+      lucide.createIcons();
+    }
+
+    tabCrewBtn.addEventListener('click', () => selectTab('crew'));
+    tabAdminBtn.addEventListener('click', () => selectTab('admin'));
+
+    // Auto Fill buttons
+    document.getElementById('fillCrewDemoBtn').addEventListener('click', () => {
+      document.getElementById('crewBadgeInput').value = 'TECH-04';
+      document.getElementById('crewPasswordInput').value = 'crew123';
+    });
+
+    document.getElementById('fillAdminDemoBtn').addEventListener('click', () => {
+      document.getElementById('adminUserInput').value = 'admin';
+      document.getElementById('adminPasswordInput').value = 'admin123';
+    });
+
+    // Handle Field Crew Login
+    fieldCrewForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const badge = document.getElementById('crewBadgeInput').value.trim();
+      const pass = document.getElementById('crewPasswordInput').value;
+
+      if ((badge.toUpperCase().startsWith('TECH') || badge.toLowerCase().includes('crew')) && pass === 'crew123') {
+        const user = {
+          role: 'technician',
+          name: 'Vikas Kumar (TECH-04)',
+          id: 'TECH-04',
+          title: 'Senior Hydro Engineer'
+        };
+        localStorage.setItem('hydrotrack_user_v1', JSON.stringify(user));
+        // Redirect to index.html with view=technician
+        window.location.href = 'index.html?view=technician';
+      } else {
+        alert("Invalid Field Crew Credentials! Use Demo: TECH-04 / crew123");
+      }
+    });
+
+    // Handle Admin Login
+    adminForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const userVal = document.getElementById('adminUserInput').value.trim();
+      const pass = document.getElementById('adminPasswordInput').value;
+
+      if ((userVal.toLowerCase() === 'admin' || userVal.toLowerCase().includes('admin@')) && pass === 'admin123') {
+        const user = {
+          role: 'admin',
+          name: 'Er. K. Natarajan',
+          id: 'ADM-01',
+          title: 'Chief Municipal Engineer'
+        };
+        localStorage.setItem('hydrotrack_user_v1', JSON.stringify(user));
+        // Redirect to index.html with view=admin
+        window.location.href = 'index.html?view=admin';
+      } else {
+        alert("Invalid Administrator Credentials! Use Demo: admin / admin123");
+      }
+    });
+
+    // Check URL param if ?tab=admin
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('tab') === 'admin') {
+      selectTab('admin');
+    }
+
+    lucide.createIcons();
+  </script>
+</body>
+</html>
